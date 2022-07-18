@@ -54,12 +54,11 @@ const clima = {
 };
 
 const getLocation = async () => {
-  const response = await axios.get(
-    'http://api.ipapi.com/api/check?access_key=02713197a79876baf9f2744ebe0101aa'
-  );
-  console.log(response.data);
-  const { city } = response.data;
-  return city;
+  let url = 'https://ipinfo.io/json?token=ada65ee9ca7df1';
+  let response = await fetch(url);
+  let data = await response.json();
+  console.log(data);
+  return data.city;
 };
 const getWeather = async (city) => {
   const cityRes = city ? city : await getLocation();
