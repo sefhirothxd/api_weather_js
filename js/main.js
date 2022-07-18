@@ -55,7 +55,7 @@ const clima = {
 
 const getLocation = async () => {
   const response = await axios.get(
-    'https://api.ipapi.com/api/check?access_key=02713197a79876baf9f2744ebe0101aa'
+    'http://api.ipapi.com/api/check?access_key=02713197a79876baf9f2744ebe0101aa'
   );
   console.log(response.data);
   const { city } = response.data;
