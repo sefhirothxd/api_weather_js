@@ -4,13 +4,13 @@ const body = document.querySelector('body');
 
 inputCity.addEventListener('keypress', (e) => {
   if (e.keyCode === 13) {
-    getWeatherByCity(e.target.value);
+    render(e.target.value);
     inputCity.disabled = true;
     inputCity.value = 'Buscando...';
     setTimeout(() => {
       inputCity.disabled = false;
       inputCity.value = '';
-    }, 4000);
+    }, 1000);
   }
 });
 
@@ -45,53 +45,45 @@ const clima = {
   },
 };
 
-const getWeatherByCity = async (city) => {
-  const weather = await axios.get(
-    `https://api.api-ninjas.com/v1/city?name=${city}`,
-    {
-      headers: {
-        'X-Api-Key': 'Jt1ttjmMBEGF/A8O764T9Q==oHGuAaiDgSEiYvql',
-      },
-    }
-  );
-  console.log(weather);
-  if (weather.data[0]?.name !== undefined) {
-    render(weather.data[0].name);
-  } else {
-    const weather = await axios.get(
-      `https://api.api-ninjas.com/v1/country?name=${city}`,
-      {
-        headers: {
-          'X-Api-Key': 'Jt1ttjmMBEGF/A8O764T9Q==oHGuAaiDgSEiYvql',
-        },
-      }
-    );
-    weather.data[0]?.name !== undefined
-      ? render(weather.data[0].name)
-      : alert('No se encontro la ciudad');
-  }
-};
-
 const getLocation = async () => {
   let url = 'https://ipinfo.io/json?token=ada65ee9ca7df1';
-  let response = await fetch(url);
-  let data = await response.json();
-  console.log('aca toy', data);
-  return data.city;
+  let response = await axios
+    .get(url)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log(error.message);
+    });
+  console.log('aca toy', response);
+  return response.city;
 };
 const getWeather = async (city) => {
-  console.log(await getLocation());
   const cityRes = city ? city : await getLocation();
   API_KEY = 'e8d8e36405e49666a199b1545524fbe5';
-  const response = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${cityRes}&lang=es&appid=${API_KEY}&units=metric`
-  );
-  console.log(response.data);
-  return response.data;
+  res = await axios
+    .get(
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityRes}&lang=es&appid=${API_KEY}&units=metric`
+    )
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error.message);
+    });
+  return res;
+};
+
+const error = (d) => {
+  if (d === undefined) {
+    inputCity.disabled = false;
+    inputCity.value = '';
+    inputCity.focus();
+    alert('No se encontro la ciudad o pais');
+    return;
+  }
 };
 
 const render = async (city) => {
   const weather = await getWeather(city);
+  console.log(weather);
+  error(weather);
   body.style.backgroundImage = `url(${clima[weather.weather[0].main].bg})`;
   container.innerHTML = `
   <div class="card">
