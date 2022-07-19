@@ -87,7 +87,7 @@ const render = async (city) => {
         clima[weather.weather[0].main].gif
       } alt="gif image">
       <img class="card-image--icon"  src="http://openweathermap.org/img/wn/${
-        weather.weather[0].icon
+        weather.weather[0].icon == '01n' ? '01d' : weather.weather[0].icon
       }@2x.png" alt="${weather.weather[0].description}">
     </div>
     <div class="card-content">
