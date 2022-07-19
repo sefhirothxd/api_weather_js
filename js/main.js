@@ -2,14 +2,16 @@ const container = document.querySelector('.container-card');
 const inputCity = document.querySelector('.inputCity');
 const body = document.querySelector('body');
 
-inputCity.addEventListener('change', (e) => {
-  getWeatherByCity(e.target.value);
-  inputCity.disabled = true;
-  inputCity.value = 'Buscando...';
-  setTimeout(() => {
-    inputCity.disabled = false;
-    inputCity.value = '';
-  }, 3000);
+inputCity.addEventListener('keypress', (e) => {
+  if (e.keyCode === 13) {
+    getWeatherByCity(e.target.value);
+    inputCity.disabled = true;
+    inputCity.value = 'Buscando...';
+    setTimeout(() => {
+      inputCity.disabled = false;
+      inputCity.value = '';
+    }, 4000);
+  }
 });
 
 const clima = {
@@ -52,11 +54,21 @@ const getWeatherByCity = async (city) => {
       },
     }
   );
-  console.log(weather.data[0]?.name);
+  console.log(weather);
   if (weather.data[0]?.name !== undefined) {
     render(weather.data[0].name);
   } else {
-    alert('La ciudad no esta disponible');
+    const weather = await axios.get(
+      `https://api.api-ninjas.com/v1/country?name=${city}`,
+      {
+        headers: {
+          'X-Api-Key': 'Jt1ttjmMBEGF/A8O764T9Q==oHGuAaiDgSEiYvql',
+        },
+      }
+    );
+    weather.data[0]?.name !== undefined
+      ? render(weather.data[0].name)
+      : alert('No se encontro la ciudad');
   }
 };
 
@@ -64,10 +76,11 @@ const getLocation = async () => {
   let url = 'https://ipinfo.io/json?token=ada65ee9ca7df1';
   let response = await fetch(url);
   let data = await response.json();
-  console.log(data);
+  console.log('aca toy', data);
   return data.city;
 };
 const getWeather = async (city) => {
+  console.log(await getLocation());
   const cityRes = city ? city : await getLocation();
   API_KEY = 'e8d8e36405e49666a199b1545524fbe5';
   const response = await axios.get(
