@@ -1,46 +1,16 @@
-const container = document.querySelector('.container');
-const countrySelector = document.querySelector('#country');
-const citySelector = document.querySelector('#city');
+const container = document.querySelector('.container-card');
+const inputCity = document.querySelector('.inputCity');
 
-const country = {
-  Argentina: [
-    'Buenos Aires',
-    'Córdoba',
-    'La Pampa',
-    'La Rioja',
-    'Mendoza',
-    'San Juan',
-  ],
-  Brasil: ['Brasilia', 'Rio de Janeiro', 'Sao Paulo'],
-  Chile: ['Santiago', 'Valdivia', 'Concepcion'],
-  Colombia: ['Bogota', 'Cali', 'Medellin'],
-  Ecuador: ['Quito', 'Guayaquil', 'Ambato'],
-  Guatemala: ['Guatemala', 'Quetzaltenango', 'San Marcos'],
-  Honduras: ['Tegucigalpa', 'San Pedro Sula', 'La Ceiba'],
-  México: ['Ciudad de México', 'Monterrey', 'Tijuana'],
-  Nicaragua: ['Managua', 'Masaya', 'Chinandega'],
-  Panamá: ['Panamá', 'Chitré', 'Veracruz'],
-  Paraguay: ['Asunción', 'Ciudad del Este', 'San Lorenzo'],
-  Perú: ['Lima', 'Arequipa', 'Cusco'],
-};
-
-const listCountries = () => {
-  for (const c in country) {
-    countrySelector.innerHTML += `<option value="${c}">${c}</option>`;
+inputCity.addEventListener('keyup', (e) => {
+  if (e.keyCode === 13) {
+    getWeatherByCity(e.target.value);
+    inputCity.disabled = true;
+    inputCity.value = 'Buscando...';
   }
-};
-
-countrySelector.addEventListener('change', (event) => {
-  console.log(event.target.value);
-  citySelector.innerHTML = '';
-  citySelector.innerHTML += `<option value="">Seleccione una ciudad</option>`;
-  for (const c of country[event.target.value]) {
-    citySelector.innerHTML += `<option value="${c}">${c}</option>`;
-  }
-});
-
-citySelector.addEventListener('change', (event) => {
-  render(event.target.value);
+  setTimeout(() => {
+    inputCity.disabled = false;
+    inputCity.value = '';
+  }, 3000);
 });
 
 const clima = {
@@ -51,6 +21,27 @@ const clima = {
   Clear: 'https://i.gifer.com/XFbw.gif',
   Thunderstorm: 'https://i.gifer.com/7TDT.gif',
   Mist: 'https://i.gifer.com/5yp.gif',
+};
+
+const getWeatherByCity = async (city) => {
+  const weather = await axios.get(
+    `https://api.api-ninjas.com/v1/city?name=${city}`,
+    {
+      headers: {
+        'X-Api-Key': 'Jt1ttjmMBEGF/A8O764T9Q==oHGuAaiDgSEiYvql',
+      },
+    }
+  );
+  console.log(
+    weather.data[0]?.name
+      ? weather.data[0].name
+      : 'La ciudad no esta disponible'
+  );
+  if (weather.data[0]?.name !== undefined) {
+    render(weather.data[0].name);
+  } else {
+    alert('La ciudad no esta disponible');
+  }
 };
 
 const getLocation = async () => {
@@ -91,5 +82,4 @@ const render = async (city) => {
 </div>
 `;
 };
-listCountries();
 render();
