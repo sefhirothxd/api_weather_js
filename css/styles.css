@@ -14,6 +14,7 @@
 html {
   font-size: 62.5%;
 }
+
 body {
   font-family: 'Overpass', sans-serif;
   font-size: 1.6rem;
@@ -24,6 +25,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .container {
   display: flex;
   flex-direction: column;
@@ -38,6 +40,7 @@ body {
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 .inputCity {
   width: 300px;
   padding: 1rem;
@@ -46,6 +49,7 @@ body {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
+
 .container-card {
   display: flex;
   align-items: center;
@@ -54,11 +58,13 @@ body {
   gap: 30px;
   width: 100%;
 }
+
 h1 {
   font-size: 3.4rem;
   font-weight: 700;
   text-align: center;
 }
+
 .card {
   background: #ccc;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
@@ -76,6 +82,7 @@ h1 {
   max-height: 150px;
   overflow: hidden;
 }
+
 .card-image .card-image--background {
   width: 100%;
   height: 150px;
@@ -83,6 +90,7 @@ h1 {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .card-image .card-image--icon {
   position: absolute;
   width: 150px;
@@ -90,6 +98,7 @@ h1 {
   left: calc(50% - 75px);
   z-index: 10;
 }
+
 .card .card-image--icon {
   -webkit-animation: float 2s linear infinite backwards;
   animation: float 2s linear infinite backwards;
@@ -100,24 +109,29 @@ h1 {
     transform: translatey(0px);
     -webkit-transform: translatey(0px);
   }
+
   50% {
     transform: translatey(-20px);
     -webkit-transform: translatey(-20px);
   }
+
   100% {
     transform: translatey(0px);
     -webkit-transform: translatey(0px);
   }
 }
+
 @keyframes float {
   0% {
     transform: translatey(0px);
     -webkit-transform: translatey(0px);
   }
+
   50% {
     transform: translatey(-20px);
     -webkit-transform: translatey(-20px);
   }
+
   100% {
     transform: translatey(0px);
     -webkit-transform: translatey(0px);
@@ -134,6 +148,7 @@ h1 {
   max-height: 150px;
   height: 100%;
 }
+
 .card-title {
   display: -webkit-box;
   -webkit-box-orient: vertical;
