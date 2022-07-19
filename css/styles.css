@@ -20,6 +20,9 @@ body {
   margin: 0 auto;
   min-height: 100vh;
   background: #ccc;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .container {
   display: flex;
@@ -37,10 +40,10 @@ body {
 }
 .inputCity {
   width: 300px;
-  padding: 0.5rem;
+  padding: 1rem;
   border: 1px solid black;
   border-radius: 10px;
-  font-size: 1.6rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 .container-card {
@@ -57,8 +60,10 @@ h1 {
   text-align: center;
 }
 .card {
+  background: #ccc;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   width: 300px;
+  height: 300px;
   text-align: center;
   border-radius: 30px;
   overflow: hidden;
@@ -68,12 +73,12 @@ h1 {
 
 .card-image {
   position: relative;
-  max-height: 144px;
+  max-height: 150px;
   overflow: hidden;
 }
 .card-image .card-image--background {
   width: 100%;
-  height: 144px;
+  height: 150px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -126,6 +131,8 @@ h1 {
   align-content: center;
   flex-direction: column;
   gap: 10px;
+  max-height: 150px;
+  height: 100%;
 }
 .card-title {
   display: -webkit-box;

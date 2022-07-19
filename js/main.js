@@ -1,12 +1,11 @@
 const container = document.querySelector('.container-card');
 const inputCity = document.querySelector('.inputCity');
+const body = document.querySelector('body');
 
-inputCity.addEventListener('keyup', (e) => {
-  if (e.keyCode === 13) {
-    getWeatherByCity(e.target.value);
-    inputCity.disabled = true;
-    inputCity.value = 'Buscando...';
-  }
+inputCity.addEventListener('change', (e) => {
+  getWeatherByCity(e.target.value);
+  inputCity.disabled = true;
+  inputCity.value = 'Buscando...';
   setTimeout(() => {
     inputCity.disabled = false;
     inputCity.value = '';
@@ -14,13 +13,34 @@ inputCity.addEventListener('keyup', (e) => {
 });
 
 const clima = {
-  Clouds: 'https://i.gifer.com/1Unb.gif',
-  Rain: 'https://i.gifer.com/7hi3.gif',
-  Snow: 'https://i.gifer.com/55Cz.gif',
-  Drizzle: 'https://i.gifer.com/7sd0.gif',
-  Clear: 'https://i.gifer.com/XFbw.gif',
-  Thunderstorm: 'https://i.gifer.com/7TDT.gif',
-  Mist: 'https://i.gifer.com/5yp.gif',
+  Clouds: {
+    gif: 'https://i.gifer.com/1Unb.gif',
+    bg: 'https://www.xtrafondos.com/wallpapers/resized/dia-nublado-en-el-bosque-9096.jpg?s=large',
+  },
+  Rain: {
+    gif: 'https://i.gifer.com/7hi3.gif',
+    bg: 'https://www.xtrafondos.com/wallpapers/hojas-de-otono-con-gotas-de-lluvia-6565.jpg',
+  },
+  Snow: {
+    gif: 'https://i.gifer.com/55Cz.gif',
+    bg: 'https://www.xtrafondos.com/wallpapers/pinos-nevados-10309.jpg',
+  },
+  Drizzle: {
+    gif: 'https://i.gifer.com/7sd0.gif',
+    bg: 'https://www.xtrafondos.com/wallpapers/carretera-de-anochecer-nubes-y-bosque-3040.jpg',
+  },
+  Clear: {
+    gif: 'https://i.gifer.com/XFbw.gif',
+    bg: 'https://www.xtrafondos.com/wallpapers/montana-en-las-nubes-al-atardecer-5383.jpg',
+  },
+  Thunderstorm: {
+    gif: 'https://i.gifer.com/7TDT.gif',
+    bg: 'https://www.xtrafondos.com/wallpapers/rayos-en-cielo-nublado-4088.jpg',
+  },
+  Mist: {
+    gif: 'https://i.gifer.com/5yp.gif',
+    bg: 'https://www.xtrafondos.com/wallpapers/bosque-con-niebla-6701.jpg',
+  },
 };
 
 const getWeatherByCity = async (city) => {
@@ -32,11 +52,7 @@ const getWeatherByCity = async (city) => {
       },
     }
   );
-  console.log(
-    weather.data[0]?.name
-      ? weather.data[0].name
-      : 'La ciudad no esta disponible'
-  );
+  console.log(weather.data[0]?.name);
   if (weather.data[0]?.name !== undefined) {
     render(weather.data[0].name);
   } else {
@@ -63,11 +79,12 @@ const getWeather = async (city) => {
 
 const render = async (city) => {
   const weather = await getWeather(city);
+  body.style.backgroundImage = `url(${clima[weather.weather[0].main].bg})`;
   container.innerHTML = `
   <div class="card">
     <div class="card-image">
       <img class="card-image--background" src=${
-        clima[weather.weather[0].main]
+        clima[weather.weather[0].main].gif
       } alt="gif image">
       <img class="card-image--icon"  src="http://openweathermap.org/img/wn/${
         weather.weather[0].icon
