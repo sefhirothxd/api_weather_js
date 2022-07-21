@@ -17,31 +17,31 @@ inputCity.addEventListener('keypress', (e) => {
 const clima = {
   Clouds: {
     gif: 'https://i.gifer.com/1Unb.gif',
-    bg: 'https://www.xtrafondos.com/wallpapers/resized/dia-nublado-en-el-bosque-9096.jpg?s=large',
+    bg: '../img/primero-min.jpg',
   },
   Rain: {
     gif: 'https://i.gifer.com/7hi3.gif',
-    bg: 'https://www.xtrafondos.com/wallpapers/hojas-de-otono-con-gotas-de-lluvia-6565.jpg',
+    bg: '../img/segundo-min.jpg',
   },
   Snow: {
     gif: 'https://i.gifer.com/55Cz.gif',
-    bg: 'https://www.xtrafondos.com/wallpapers/pinos-nevados-10309.jpg',
+    bg: '../img/tercero-min.jpg',
   },
   Drizzle: {
-    gif: 'https://i.gifer.com/7sd0.gif',
-    bg: 'https://www.xtrafondos.com/wallpapers/carretera-de-anochecer-nubes-y-bosque-3040.jpg',
+    gif: 'https://64.media.tumblr.com/9c74d088642998035c3348045bf801dc/tumblr_n8mv2t0K8I1rjje1fo1_500.gifv',
+    bg: '../img/cuarto-min.jpg',
   },
   Clear: {
     gif: 'https://i.gifer.com/XFbw.gif',
-    bg: 'https://www.xtrafondos.com/wallpapers/montana-en-las-nubes-al-atardecer-5383.jpg',
+    bg: '../img/quito-min.jpg',
   },
   Thunderstorm: {
     gif: 'https://i.gifer.com/7TDT.gif',
-    bg: 'https://www.xtrafondos.com/wallpapers/rayos-en-cielo-nublado-4088.jpg',
+    bg: '../img/sexto-min.jpg',
   },
   Mist: {
     gif: 'https://i.gifer.com/5yp.gif',
-    bg: 'https://www.xtrafondos.com/wallpapers/bosque-con-niebla-6701.jpg',
+    bg: '../img/septimo-min.jpg',
   },
 };
 
