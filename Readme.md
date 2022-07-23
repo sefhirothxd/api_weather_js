@@ -7,7 +7,7 @@ Aplicativo que muestra el clima por pais o ciudad.
 ### Primera manera
 
 descargar mediante zip desde github.
-![](https://res.cloudinary.com/skillien/image/upload/v1658457672/descargar-githubperfil_st1cbk.png)
+![](https://res.cloudinary.com/skillien/image/upload/v1658611230/githubclima_oorzq6.png)
 
 ### Segunda manera
 
